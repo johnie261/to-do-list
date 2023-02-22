@@ -83,7 +83,10 @@ Track JavaScript linter errors run:
 npx eslint .
 ```
 To run the project:
+
 ```
+npm install --save-dev webpack-dev-server
+
 npm start
 ```
 
