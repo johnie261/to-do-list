@@ -42,7 +42,7 @@ body {
   border-bottom: 1px solid #d3d3d3;
 }
 
-.taskList{
+.taskList {
   height: 27vh;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -65,43 +65,38 @@ body {
   font-size: 1.2rem;
   padding: 0 1rem;
   border-bottom: 1px solid #d3d3d3;
-  
 }
 
-.wrapper form{
+.wrapper form {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 400%;
   padding: 0 1rem;
-  
 }
 
 .checkbox {
-  margin-right: .7rem;
+  margin-right: 0.7rem;
 }
 
-.task-text{
+.task-text {
   padding: 1rem 0;
   border: none;
   width: 300%;
 }
 
-#icon{
+#icon {
   justify-content: flex-end;
 }
-
 
 @media screen and (max-width: 1200px) {
   .box-list {
     width: 75%;
   }
-  
 }
 
 @media screen and (max-width: 768px) {
   .box-list {
     width: 90%;
   }
-  
 }

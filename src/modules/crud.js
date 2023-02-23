@@ -22,8 +22,8 @@ const showTasks = () => {
         </div>
       </div>`;
 
-      taskDesc.value = '';
-  })
+    taskDesc.value = '';
+  });
 };
 
 const addTask = (arr, newTaskInput) => {
@@ -48,24 +48,24 @@ formInput.addEventListener('submit', (e) => {
   showTasks();
 });
 window.updateList = (index) => {
-  const editInput = document.getElementById("list" + index + "");
-  editInput.removeAttribute("readonly");
-  const length = editInput.value.length;
+  const editInput = document.getElementById(`list${index}`);
+  editInput.removeAttribute('readonly');
+  const { length } = editInput.value;
   editInput.setSelectionRange(length, length);
   editInput.focus();
   return editInput;
-}
-
-window.saveList = (index) => {
- const editInput = document.getElementById("list" + index + "");
-  const tasks = JSON.parse(localStorage.getItem('tasks'));
-  tasks[index-1].description = editInput.value;
-
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-  //showTasks();
 };
 
-const deleteTasks = function (id) {
+window.saveList = (index) => {
+  const editInput = document.getElementById(`list${index}`);
+  const tasks = JSON.parse(localStorage.getItem('tasks'));
+  tasks[index - 1].description = editInput.value;
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  // showTasks();
+};
+
+const deleteTasks = (id) => {
   let tasks = JSON.parse(localStorage.getItem('tasks'));
   tasks = tasks.filter((e) => e.index.toString() !== id.toString());
   for (let i = 0; i < tasks.length; i += 1) {
