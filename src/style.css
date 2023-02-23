@@ -7,9 +7,12 @@ body {
 }
 
 .box-list {
+  position: relative;
   background-color: #fff;
   width: 50%;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  height: 50vh;
+  overflow: hidden;
 }
 
 .list-title {
@@ -39,21 +42,66 @@ body {
   border-bottom: 1px solid #d3d3d3;
 }
 
+.taskList{
+  height: 27vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .clear {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   padding: 0.2rem;
   text-align: center;
   background-color: #e2e2e2;
   font-size: 1.5rem;
 }
 
-.task-wrapper {
+.task-wrap {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   font-size: 1.2rem;
   padding: 0 1rem;
   border-bottom: 1px solid #d3d3d3;
+  
+}
+
+.wrapper form{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 400%;
+  padding: 0 1rem;
+  
 }
 
 .checkbox {
-  margin-right: 1rem;
+  margin-right: .7rem;
+}
+
+.task-text{
+  padding: 1rem 0;
+  border: none;
+  width: 300%;
+}
+
+#icon{
+  justify-content: flex-end;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .box-list {
+    width: 75%;
+  }
+  
+}
+
+@media screen and (max-width: 768px) {
+  .box-list {
+    width: 90%;
+  }
+  
 }
