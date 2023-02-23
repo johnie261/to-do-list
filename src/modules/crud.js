@@ -9,16 +9,17 @@ const showTasks = () => {
 
   tasks.forEach((el) => {
     taskContainer.innerHTML += `
-      <div class="task-wrap">
+      <div class="task-wrap" id="${el.index}">
         <div class="wrapper">
             <form class="completed-form">
-            <input class="checkbox" type="checkbox">
-            <input id="list${el.index}" class="task-text" value = "${el.description}" onclick="updateList(${el.index});" readonly>
+                <input class="checkbox" type="checkbox">
+                <input class="task-text" id="list${el.index}" value="${el.description}" readonly>
             </form>
         </div>
         <div class="task-icons">
+          <i class="fa-solid fa-pen-to-square edit " id="edit${el.index}" onclick="editList(${el.index});"></i>
           <i class="fa-solid fa-floppy-disk save hide" id="save${el.index}" onclick="saveList(${el.index});"></i>
-          <i id="${el.index}" class="fa-solid fa-trash-can"></i>
+          <i id="removeicon" onclick="Remove(${el.index});" class="fa-solid fa-trash"></i>
         </div>
       </div>`;
 
@@ -47,41 +48,47 @@ formInput.addEventListener('submit', (e) => {
   addTask(tasks, newTaskInput);
   showTasks();
 });
-window.updateList = (index) => {
-  const editInput = document.getElementById(`list${index}`);
-  editInput.removeAttribute('readonly');
-  const { length } = editInput.value;
-  editInput.setSelectionRange(length, length);
-  editInput.focus();
-  return editInput;
+
+window.Remove = (index) => {
+  const storedData = localStorage.getItem('tasks');
+  tasks = JSON.parse(storedData);
+  tasks.splice(index, 1);
+  for (let i = 0; i < tasks.length; i += 1) {
+    tasks[i].index = i;
+  }
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  showTasks();
+};
+
+window.editList = (index) => {
+  const editBtn = document.getElementById(`edit${index}`);
+  const saveBtn = document.getElementById(`save${index}`);
+
+  saveBtn.style.display = 'inline-block';
+  editBtn.style.display = 'none';
+  const specList = document.getElementById(`list${index}`);
+  specList.removeAttribute('readonly');
+  const { length } = specList.value;
+  specList.setSelectionRange(length, length);
+  specList.focus();
+  return specList;
 };
 
 window.saveList = (index) => {
-  const editInput = document.getElementById(`list${index}`);
-  const tasks = JSON.parse(localStorage.getItem('tasks'));
-  tasks[index - 1].description = editInput.value;
+  const editBtn = document.getElementById(`edit${index}`);
+  const saveBtn = document.getElementById(`save${index}`);
+
+  saveBtn.style.display = 'none';
+  editBtn.style.display = 'inline-block';
+
+  const specList = document.getElementById(`list${index}`);
+  tasks = JSON.parse(localStorage.getItem('tasks'));
+  tasks[index].description = specList.value;
 
   localStorage.setItem('tasks', JSON.stringify(tasks));
-  // showTasks();
+  showTasks();
 };
-
-const deleteTasks = (id) => {
-  let tasks = JSON.parse(localStorage.getItem('tasks'));
-  tasks = tasks.filter((e) => e.index.toString() !== id.toString());
-  for (let i = 0; i < tasks.length; i += 1) {
-    tasks[i].index = i + 1;
-  }
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-//  showTasks(tasks);
-};
-
-taskContainer.addEventListener('click', (e) => {
-  if (e.target.classList.contains('fa-trash-can')) {
-    const { id } = e.target;
-    deleteTasks(id);
-    e.target.parentElement.parentElement.remove();
-  }
-});
 
 window.onload = () => {
   if (localStorage.getItem('tasks')) {

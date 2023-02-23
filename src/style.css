@@ -71,7 +71,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 400%;
+  width: 200%;
   padding: 0 1rem;
 }
 
@@ -93,10 +93,30 @@ body {
   .box-list {
     width: 75%;
   }
+
+  .wrapper form {
+    width: 225%;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .wrapper form {
+    width: 175%;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .box-list {
     width: 90%;
+  }
+
+  .wrapper form {
+    width: 150%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .wrapper form {
+    width: 100%;
   }
 }
