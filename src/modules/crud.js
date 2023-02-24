@@ -1,7 +1,7 @@
 const taskContainer = document.querySelector('.taskList');
 const taskDesc = document.querySelector('.desc');
 const formInput = document.querySelector('.formInput');
-//const clearTasks = document.querySelector('.clear');
+// const clearTasks = document.querySelector('.clear');
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) ? JSON.parse(localStorage.getItem('tasks')) : [];
 
@@ -9,7 +9,7 @@ const showTasks = () => {
   taskContainer.innerHTML = '';
 
   tasks.forEach((el) => {
-    if (el.status == true) {
+    if (el.status === true) {
       taskContainer.innerHTML += `
       <div class="task-wrap" id="${el.index}">
       <div class="wrapper">
@@ -40,7 +40,7 @@ const showTasks = () => {
       </div>
     </div>`;
     }
-  
+
     taskDesc.value = '';
   });
 };
@@ -107,9 +107,9 @@ window.saveList = (index) => {
   showTasks();
 };
 
-//interactive
+// interactive
 
- window.onload = () => {
+window.onload = () => {
   if (localStorage.getItem('tasks')) {
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
