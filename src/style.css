@@ -85,6 +85,11 @@ body {
   width: 300%;
 }
 
+.completed {
+  text-decoration: line-through;
+  color: #d3d3d3;
+}
+
 #icon {
   justify-content: flex-end;
 }
