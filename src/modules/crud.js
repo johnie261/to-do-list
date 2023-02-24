@@ -1,6 +1,7 @@
 const taskContainer = document.querySelector('.taskList');
 const taskDesc = document.querySelector('.desc');
 const formInput = document.querySelector('.formInput');
+//const clearTasks = document.querySelector('.clear');
 
 let tasks = JSON.parse(localStorage.getItem('tasks')) ? JSON.parse(localStorage.getItem('tasks')) : [];
 
@@ -8,25 +9,41 @@ const showTasks = () => {
   taskContainer.innerHTML = '';
 
   tasks.forEach((el) => {
-    taskContainer.innerHTML += `
+    if (el.status == true) {
+      taskContainer.innerHTML += `
       <div class="task-wrap" id="${el.index}">
-        <div class="wrapper">
-            <form class="completed-form">
-                <input class="checkbox" type="checkbox">
-                <input class="task-text" id="list${el.index}" value="${el.description}" readonly>
-            </form>
-        </div>
-        <div class="task-icons">
-          <i class="fa-solid fa-pen-to-square edit " id="edit${el.index}" onclick="editList(${el.index});"></i>
-          <i class="fa-solid fa-floppy-disk save hide" id="save${el.index}" onclick="saveList(${el.index});"></i>
-          <i id="removeicon" onclick="Remove(${el.index});" class="fa-solid fa-trash"></i>
-        </div>
-      </div>`;
-
+      <div class="wrapper">
+          <form class="completed-form">
+              <input class="checkbox" id="${el.index}" type="checkbox" checked>
+              <input class="completed task-text" id="list${el.index}" value="${el.description}" readonly>
+          </form>
+      </div>
+      <div class="task-icons">
+        <i class="fa-solid fa-pen-to-square edit " id="edit${el.index}" onclick="editList(${el.index});"></i>
+        <i class="fa-solid fa-floppy-disk save hide" id="save${el.index}" onclick="saveList(${el.index});"></i>
+        <i id="removeicon" onclick="Remove(${el.index});" class="fa-solid fa-trash"></i>
+      </div>
+    </div>`;
+    } else {
+      taskContainer.innerHTML += `
+      <div class="task-wrap" id="${el.index}">
+      <div class="wrapper">
+          <form class="completed-form">
+              <input class="checkbox" id="${el.index}" type="checkbox">
+              <input class="task-text" id="list${el.index}" value="${el.description}" readonly>
+          </form>
+      </div>
+      <div class="task-icons">
+        <i class="fa-solid fa-pen-to-square edit " id="edit${el.index}" onclick="editList(${el.index});"></i>
+        <i class="fa-solid fa-floppy-disk save hide" id="save${el.index}" onclick="saveList(${el.index});"></i>
+        <i id="removeicon" onclick="Remove(${el.index});" class="fa-solid fa-trash"></i>
+      </div>
+    </div>`;
+    }
+  
     taskDesc.value = '';
   });
 };
-
 const addTask = (arr, newTaskInput) => {
   let index;
   const len = arr.length;
@@ -90,7 +107,9 @@ window.saveList = (index) => {
   showTasks();
 };
 
-window.onload = () => {
+//interactive
+
+ window.onload = () => {
   if (localStorage.getItem('tasks')) {
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
