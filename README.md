@@ -24,6 +24,12 @@ a simple HTML list of To Do tasks
 - Javascript, ES6.
 - Webpack and webpack dev server
 
+## 🚀 Live Demo <a name="live-demo"></a>
+
+> Here you can see the live demo of my project:
+
+- [Live Demo Link](https://johnie261.github.io/to-do-list/dist/)
+
 # 💻 Getting Started:
 ### To get a local copy up and running, follow these steps:
 
