@@ -1,6 +1,6 @@
 const taskContainer = document.querySelector('.taskList');
 const clearTasks = document.querySelector('.clear');
-//const formInput = document.querySelector('.formInput');
+// const formInput = document.querySelector('.formInput');
 
 const updateStatus = (id) => {
   const tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -22,10 +22,8 @@ const clearMarked = () => {
   tasks = tasks.filter((e) => e.status !== true);
   for (let i = 0; i < tasks.length; i += 1) {
     tasks[i].index = i + 1;
-    
   }
   localStorage.setItem('tasks', JSON.stringify(tasks));
- 
 };
 
 taskContainer.addEventListener('click', (e) => {
@@ -53,5 +51,5 @@ clearTasks.addEventListener('click', (e) => {
       e.parentElement.parentElement.parentElement.remove();
     }
   });
- // localStorage.setItem('tasks', JSON.stringify(tasks));
+  // localStorage.setItem('tasks', JSON.stringify(tasks));
 });
