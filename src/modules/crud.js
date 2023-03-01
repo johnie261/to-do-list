@@ -101,7 +101,7 @@ window.saveList = (index) => {
 
   const specList = document.getElementById(`list${index}`);
   tasks = JSON.parse(localStorage.getItem('tasks'));
-  tasks[index].description = specList.value;
+  tasks[index - 1].description = specList.value;
 
   localStorage.setItem('tasks', JSON.stringify(tasks));
   showTasks();
